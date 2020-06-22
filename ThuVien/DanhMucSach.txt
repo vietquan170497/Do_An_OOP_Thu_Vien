@@ -7,3 +7,5 @@
 502	Vat ly 1	DHXD	DHXD	2020
 500	Giai tich 1	DHXD	DHXD	2020
 501	Giai tich 2	DHXD	DHXD	2020
+511	Dai so tuyen tinh	Dai hoc XD	DHXD	2020
+512	Ky thuat so	DHXD	Dai hoc XD	2020

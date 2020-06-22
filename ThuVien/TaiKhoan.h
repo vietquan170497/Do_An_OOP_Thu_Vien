@@ -74,8 +74,6 @@ void TaiKhoan::dangNhap() {
 	cin >> inputMK;
 	cout << "STK nhap : " << inputStk << "\t MK nhap : " << inputMK << endl;
 	setCheck(0);
-	//kiem tra thong tin dang nhap
-	//int a[50][5];
 	fstream myfile;
 	myfile.open("TaiKhoan.txt", ios::in);
 	if (!myfile.is_open()) cout << "Khong mo duoc file TaiKhoan.txt";
