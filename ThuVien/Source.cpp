@@ -166,10 +166,10 @@ void giaoDien() {
 								else
 								{
 									cout << "\nMa sach: " << sach.getMaSach();
-									cout << "\nTen thanh vien: " << sach.getTenSach();
-									cout << "\nLop quan ly: " << sach.getTacGia();
-									cout << "\nSo dien thoai: " << sach.getNhaXB();
-									cout << "\nNgay het han the: " << sach.getNamXB();
+									cout << "\nTen sach: " << sach.getTenSach();
+									cout << "\nTac gia: " << sach.getTacGia();
+									cout << "\nNha xuat ban: " << sach.getNhaXB();
+									cout << "\nNam xuat ban: " << sach.getNamXB();
 								}
 								break;
 							}						
@@ -238,10 +238,10 @@ void giaoDien() {
 									{
 										cout << "\nSua thong tin sach: ";
 										cout << "\nMa sach: " << sach.getMaSach();
-										cout << "\nTen thanh vien: " << sach.getTenSach();
-										cout << "\nLop quan ly: " << sach.getTacGia();
-										cout << "\nSo dien thoai: " << sach.getNhaXB();
-										cout << "\nNgay het han the: " << sach.getNamXB();
+										cout << "\nTen sach: " << sach.getTenSach();
+										cout << "\nTac gia: " << sach.getTacGia();
+										cout << "\nNha xuat ban: " << sach.getNhaXB();
+										cout << "\nNam xuat ban: " << sach.getNamXB();
 
 										cout << "\n\nNhap thong tin sua: ";
 										cin.ignore();
@@ -304,10 +304,10 @@ void giaoDien() {
 									{
 										cout << "\nXac nhan xoa thong tin sach: ";
 										cout << "\nMa sach: " << sach.getMaSach();
-										cout << "\nTen thanh vien: " << sach.getTenSach();
-										cout << "\nLop quan ly: " << sach.getTacGia();
-										cout << "\nSo dien thoai: " << sach.getNhaXB();
-										cout << "\nNgay het han the: " << sach.getNamXB();
+										cout << "\nTen sach: " << sach.getTenSach();
+										cout << "\nTac gia: " << sach.getTacGia();
+										cout << "\nNha xuat ban: " << sach.getNhaXB();
+										cout << "\nNam xuat ban: " << sach.getNamXB();
 
 										string confirmXoa = "";
 										cout << "\nChon (y/n): ";

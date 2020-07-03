@@ -208,83 +208,89 @@ void PhieuMuon::taoPhieuTra() {
 	}
 	countPhieu--;
 	file.close();
-	string s;
-	string strMaPhieu;
-	int intMaPhieu=0, pCount = 0;
-	for (int j = 0; j < countPhieu; j++) {
-		s = dsPhieu[j];
-		string delimiter = "\t";		
-		strMaPhieu = s.substr(0, s.find(delimiter));
-		if(strMaPhieu!=""){
-			stringstream geek(strMaPhieu);
-			geek >> intMaPhieu;
-			if (intMaPhieu == getMaMuon()) {
-				position = j;
-				size_t pos = 0;
-				string token;
-				pCount = 0;
-				while ((pos = s.find(delimiter)) != string::npos) {
-					token = s.substr(0, pos);
-					stringstream geek(token);
-					geek >> phieu[pCount++];
-					s.erase(0, pos + delimiter.length());
+	if (countPhieu > 0) {
+		string s;
+		string strMaPhieu;
+		int intMaPhieu = 0, pCount = 0;
+		for (int j = 0; j < countPhieu; j++) {
+			s = dsPhieu[j];
+			string delimiter = "\t";
+			strMaPhieu = s.substr(0, s.find(delimiter));
+			if (strMaPhieu != "") {
+				stringstream geek(strMaPhieu);
+				geek >> intMaPhieu;
+				if (intMaPhieu == getMaMuon()) {
+					position = j;
+					size_t pos = 0;
+					string token;
+					pCount = 0;
+					while ((pos = s.find(delimiter)) != string::npos) {
+						token = s.substr(0, pos);
+						stringstream geek(token);
+						geek >> phieu[pCount++];
+						s.erase(0, pos + delimiter.length());
+					}
+				}
+			}
+
+		}
+		//cout << position << endl;
+		for (int j1 = 2; j1 < pCount; j1++) {
+			taoTraSach(phieu[j1]);
+		}
+
+		fstream filePM;
+		filePM.open("PhieuMuon.txt", ios::out);
+		if (!filePM.is_open())
+		{
+			cout << "Khong mo duoc file PhieuMuon.txt";
+		}
+		else {
+			for (int i1 = 0; i1 < countPhieu; i1++) {
+				if (i1 != position) {
+					filePM << dsPhieu[i1] << "\n";
 				}
 			}
 		}
-		
-	}
-	//cout << position << endl;
-	for (int j1 = 2; j1 < pCount; j1++) {
-		taoTraSach(phieu[j1]);
-	}
 
-	fstream filePM;
-	filePM.open("PhieuMuon.txt", ios::out);
-	if (!filePM.is_open())
-	{
-		cout << "Khong mo duoc file PhieuMuon.txt";
-	}
-	else{
-		for (int i1 = 0; i1 < countPhieu; i1++) {
-			if (i1 != position) {
-				filePM  << dsPhieu[i1] << "\n";
-			}
-		}
-	}
-	
-	cout << "\nTra sach thanh cong\n";
+		cout << "\nTra sach thanh cong\n";
 
-	cout << setfill('-');
-	cout << "+" << setw(15) << "+" << setw(30) << "+" << endl;
-	cout << setfill(' ');
+		cout << setfill('-');
+		cout << "+" << setw(15) << "+" << setw(30) << "+" << endl;
+		cout << setfill(' ');
 
-	cout << setw(15) << left << "| Ma muon";
-	cout << "| " << setw(28) << left << phieu[0] << "|" << endl;
+		cout << setw(15) << left << "| Ma muon";
+		cout << "| " << setw(28) << left << phieu[0] << "|" << endl;
 
-	cout << setfill('-');
-	cout << setw(15) << "+" << setw(30) << "+" << "+" << endl;
-	cout << setfill(' ');
-
-	cout << setw(15) << left << "| Mssv";
-	cout << "| " << setw(28) << left << phieu[1] << "|" << endl;
-
-	cout << setfill('-');
-	cout << setw(15) << "+" << setw(30) << "+" << "+" << endl;
-	cout << setfill(' ');
-
-	cout << setw(15) << left << "| Sach tra:";
-	cout << setw(30) << left << "| " << "|" << endl;
-	for (int j = 2; j < pCount; j++) {
 		cout << setfill('-');
 		cout << setw(15) << "+" << setw(30) << "+" << "+" << endl;
 		cout << setfill(' ');
-		getSachThuVien(phieu[j]);
+
+		cout << setw(15) << left << "| Mssv";
+		cout << "| " << setw(28) << left << phieu[1] << "|" << endl;
+
+		cout << setfill('-');
+		cout << setw(15) << "+" << setw(30) << "+" << "+" << endl;
+		cout << setfill(' ');
+
+		cout << setw(15) << left << "| Sach tra:";
+		cout << setw(30) << left << "| " << "|" << endl;
+		for (int j = 2; j < pCount; j++) {
+			cout << setfill('-');
+			cout << setw(15) << "+" << setw(30) << "+" << "+" << endl;
+			cout << setfill(' ');
+			getSachThuVien(phieu[j]);
+		}
+		cout << setfill('-');
+		cout << setw(15) << "+" << setw(30) << "+" << "+" << endl;
+		cout << setfill(' ');
+
+		filePM.close();
 	}
-	cout << setfill('-');
-	cout << setw(15) << "+" << setw(30) << "+" << "+" << endl;
-	cout << setfill(' ');
-	
-	filePM.close();
+	else
+	{
+		cout << endl << "Khong co phieu muon nao";
+	}
 }
 
 void PhieuMuon::taoTraSach(int maSachTra) {
@@ -358,45 +364,55 @@ void PhieuMuon::timPhieuTheoMssv() {
 		}
 	}
 	file.close();
-	
-
-	countSach = 0;
-	for (int i = 0; i < countMaSach; i++)
-	{
-		s = dsMaSach[i];
-		string delimiter = "\t";
-		size_t pos = 0;
-		string token;
-		while ((pos = s.find(delimiter)) != string::npos) {
-			token = s.substr(0, pos);
-			stringstream geek(token);
-			geek >> dsSach[countSach++];
-			s.erase(0, pos + delimiter.length());
-		}
-	}
-	
-	int cSachTV = 0, dsSachTV[50], tmp;
-	for (int i = 0; i < countSach; i++) {
-		for (int j = i + 1; j < countSach; j++) {
-			if (dsSach[i] > dsSach[j]) {
-				tmp = dsSach[i];
-				dsSach[i] = dsSach[j];
-				dsSach[j] = tmp;
+	countMaSach--;
+	if (countMaSach > 0) {
+		countSach = 0;
+		for (int i = 0; i < countMaSach; i++)
+		{
+			s = dsMaSach[i];
+			string delimiter = "\t";
+			size_t pos = 0;
+			string token;
+			while ((pos = s.find(delimiter)) != string::npos) {
+				token = s.substr(0, pos);
+				stringstream geek(token);
+				geek >> dsSach[countSach++];
+				s.erase(0, pos + delimiter.length());
 			}
 		}
-	}
-	dsSachTV[cSachTV++] = dsSach[0];
-	for (int i = 0; i < countSach-1; i++) {
-		if (dsSach[i] != dsSach[i+1]) {
-			dsSachTV[cSachTV++] = dsSach[i + 1];
+
+		int cSachTV = 0, dsSachTV[50], tmp;
+		for (int i = 0; i < countSach; i++) {
+			for (int j = i + 1; j < countSach; j++) {
+				if (dsSach[i] > dsSach[j]) {
+					tmp = dsSach[i];
+					dsSach[i] = dsSach[j];
+					dsSach[j] = tmp;
+				}
+			}
+		}
+		dsSachTV[cSachTV++] = dsSach[0];
+		for (int i = 0; i < countSach - 1; i++) {
+			if (dsSach[i] != dsSach[i + 1]) {
+				dsSachTV[cSachTV++] = dsSach[i + 1];
+			}
+		}
+		cout << endl << "So sach thanh vien " << getMssv() << " muon la: " << (cSachTV);
+		cout << "\nCac quyen thanh vien muon la: " << endl;
+		cout << setfill('-');
+		cout << "+" << setw(15) << "+" << setw(30) << "+" << endl;
+		cout << setfill(' ');
+		for (int j = 0; j < cSachTV; j++)
+		{
+			getSachThuVien(dsSachTV[j]);
+			cout << setfill('-');
+			cout << setw(15) << "+" << setw(30) << "+" << "+" << endl;
+			cout << setfill(' ');
+			//cout << "\n";
 		}
 	}
-	cout << "So sach thanh vien " << getMssv() << " muon la: " << (cSachTV);
-	cout << "\nCac quyen thanh vien muon la: " << endl;
-	for (int j = 0; j < cSachTV; j++)
-	{
-		getSachThuVien(dsSachTV[j]);
-		cout << "\n";
+	else {
+		cout << endl << "Thanh vien khong muon sach cua thu vien" ;
 	}
 }
 
