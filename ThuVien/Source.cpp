@@ -346,16 +346,24 @@ void giaoDien() {
 						string ten, lop, sdt, hetHan;
 						cout << "\n4 - Quan ly thong tin thanh vien duoc chon\n";
 						cout << "\nMoi chon chuc nang tuong ung:\n";
-						cout << "1 - Xem thong tin thanh vien\n";
-						cout << "2 - Xem thong tin muon sach cua thanh vien\n";
-						cout << "3 - Them thanh vien\n";
-						cout << "4 - Sua thanh vien\n";
-						cout << "5 - Xoa thanh vien\n";
+						cout << "1 - Xem danh sach thanh vien\n";
+						cout << "2 - Xem thong tin thanh vien theo ma sinh vien\n";
+						cout << "3 - Xem thong tin muon sach cua thanh vien\n";
+						cout << "4 - Them thanh vien\n";
+						cout << "5 - Sua thanh vien\n";
+						cout << "6 - Xoa thanh vien\n";
 						cout << "Chon: ";
 						cin >> chonTV;
 						switch (chonTV) {
 							case 1: {
-								cout << "\n4.1 - Xem thong tin thanh vien duoc chon\n";
+								cout << "\n4.1 - Xem danh sach thanh vien duoc chon\n";
+								cout << "Nhap ma so sinh vien can xem: ";
+								ThanhVien thanhvien;
+								thanhvien.danhSachThanhVien();
+								break;
+							}
+							case 2: {
+								cout << "\n4.2 - Xem thong tin thanh vien duoc chon\n";
 								cout << "Nhap ma so sinh vien can xem: ";
 								cin >> mssv;
 								ThanhVien thanhVien;
@@ -374,8 +382,8 @@ void giaoDien() {
 								}
 								break;
 							}
-							case 2: {
-								cout << "\n4.2 - Xem thong tin muon sach cua thanh vien duoc chon\n";
+							case 3: {
+								cout << "\n4.3 - Xem thong tin muon sach cua thanh vien duoc chon\n";
 								cout << "Nhap ma so sinh vien can xem: ";
 								cin >> mssv;
 								ThanhVien thanhVien;
@@ -392,9 +400,9 @@ void giaoDien() {
 								}
 								break;
 							}
-							case 3: {
+							case 4: {
 								ThanhVien thanhVien;
-								cout << "\n4.3 - Them thanh vien duoc chon\n";
+								cout << "\n4.4 - Them thanh vien duoc chon\n";
 								cout << "\nNhap ma so sinh vien: ";
 								cin >> mssv;
 								//fflush(stdin);
@@ -434,8 +442,8 @@ void giaoDien() {
 								
 								break;
 							}
-							case 4: {
-								cout << "\n4.4 - Sua thanh vien duoc chon\n";
+							case 5: {
+								cout << "\n4.5 - Sua thanh vien duoc chon\n";
 								ThanhVien thanhVien;
 								cout << "\nNhap ma so sinh vien can sua: ";
 								cin >> mssv;
@@ -482,8 +490,8 @@ void giaoDien() {
 								}
 								break;
 							}
-							case 5: {
-								cout << "\n4.5 - Xoa thanh vien duoc chon\n";
+							case 6: {
+								cout << "\n4.6 - Xoa thanh vien duoc chon\n";
 								ThanhVien thanhVien;
 								cout << "\nNhap ma so sinh vien can xoa: ";
 								cin >> mssv;

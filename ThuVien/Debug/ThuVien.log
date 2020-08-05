@@ -1,2 +1,3 @@
 ﻿  Source.cpp
+e:\procpp\thuvien\thuvien\thanhvien.h(122): warning C4101: 'mssv': unreferenced local variable
   ThuVien.vcxproj -> E:\ProCPP\ThuVien\Debug\ThuVien.exe

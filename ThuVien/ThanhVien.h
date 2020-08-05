@@ -26,6 +26,7 @@ public:
 	int getCheckPhieuMuon();
 	void setCheckPhieuMuon(int checkPhieuMuon);
 	int getCheckMssv();
+	void danhSachThanhVien();
 	void getThanhVien();
 	void themThanhVien();
 	void suaThanhVien();
@@ -114,6 +115,62 @@ void ThanhVien::setCheckPhieuMuon(int checkPhieuMuon) {
 
 int ThanhVien::getCheckPhieuMuon() {
 	return this->checkPhieuMuon;
+}
+
+void ThanhVien::danhSachThanhVien() {
+	int i;
+	int mssv;
+	string str;
+	string tenSV;
+	string lop;
+	string sdt;
+	string ngayHetHan;
+	fstream file;
+	string strArr[50][4];
+	int intArr[50];
+	file.open("ThanhVien.txt", ios::in || ios::out);
+	if (!file.is_open())
+	{
+		cout << "Khong mo duoc file ThanhVien.txt";
+	}
+	else
+	{
+		i = 0;
+		while (!file.eof()) {
+			file >> intArr[i];
+			getline(file, str, '\t');
+			getline(file, strArr[i][0], '\t');
+			getline(file, strArr[i][1], '\t');
+			getline(file, strArr[i][2], '\t');
+			getline(file, strArr[i][3], '\n');
+			i++;
+		}
+	}
+	i--;
+	cout << "\nDanh muc sach:\n";
+
+	cout << setfill('-');
+	cout << "+" << setw(15) << "+" << setw(25) << "+" << setw(25) << "+" << setw(20) << "+" << setw(15) << "+" << endl;
+	cout << setfill(' ');
+
+	cout << setw(15) << left << "| Ma sinh vien" << setw(25) << left << "| Ten sinh vien" << setw(25) << left << "| Lop" << setw(20) << left << "| So dien thoai" << setw(15) << left << "| Ngay het han" << "|" << endl;
+
+	cout << setfill('-');
+	cout << setw(15) << "+" << setw(25) << "+" << setw(25) << "+" << setw(20) << "+" << setw(15) << "+" << "+" << endl;
+	cout << setfill(' ');
+
+	for (int i1 = 0; i1 < i; i1++) {
+		cout << "| " << setw(13) << intArr[i1];
+		cout << "| " << setw(23) << strArr[i1][0];
+		cout << "| " << setw(23) << strArr[i1][1];
+		cout << "| " << setw(18) << strArr[i1][2];
+		cout << "| " << setw(13) << strArr[i1][3];
+		cout << "|\n";
+		cout << setfill('-');
+		cout << setw(15) << "+" << setw(25) << "+" << setw(25) << "+" << setw(20) << "+" << setw(15) << "+" << "+" << endl;
+		cout << setfill(' ');
+	}
+	file.close();
 }
 
 void ThanhVien::getThanhVien() {
